@@ -17,8 +17,11 @@ TOKENIZER_UPLIFT = 1.30
 # ---------------------------------------------------------------- measured
 SYSTEM_PROMPT = 596        # example_system_prompt.md (410 words)
 ROUTER_PROMPT = 47         # one-line classification instruction
-QUESTION = 13              # mean of 10 example questions (11-15)
-SCRIPT_REQUEST = 24        # mean of 5 example script requests (20-28)
+# ---------------------------------------------------------------- cited
+# Mean user prompt length, Llama 2 tokenizer. Divided by the uplift because
+# these are already counts of real text, not old-tokenizer counts.
+QUESTION = 69.5 / 1.30        # LMSYS-Chat-1M, Zheng et al. 2024, Table 1 (arXiv 2309.11998)
+SCRIPT_REQUEST = 295.6 / 1.30 # WildChat, Zhao et al. 2024, Table 1 (arXiv 2405.01470)
 CHUNK = 384                # mean chunk, cell-aware chunking at a 512 target
 CHUNK_LABEL = 15           # "[Notebook name #n]" tag around each chunk
 SCRIPT_OUT = 849           # mean of the 3 starter scripts (655-1110)
