@@ -55,7 +55,7 @@ def calls_question(k=K_CHUNKS):
     ]
 
 
-def calls_script(k=K_CHUNKS, fixes=0.6, thinking=THINKING_SCRIPT):
+def calls_script(k=K_CHUNKS, fixes=0.75, thinking=THINKING_SCRIPT):
     write_in = SYSTEM_PROMPT + SCRIPT_REQUEST + context(k)
     write_out = SCRIPT_OUT + SCRIPT_NOTES + thinking
     fix_in = write_in + SCRIPT_OUT + ERROR_TEXT
