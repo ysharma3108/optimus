@@ -1,0 +1,202 @@
+{
+  "notebooks": {
+    "Acoustic intensity and power calculations for a piston source.ipynb": {
+      "cells": 34,
+      "words": 1141,
+      "chars": 8831,
+      "tokens": 2315
+    },
+    "Array source configuration.ipynb": {
+      "cells": 14,
+      "words": 332,
+      "chars": 2662,
+      "tokens": 606
+    },
+    "Array source simulation.ipynb": {
+      "cells": 24,
+      "words": 628,
+      "chars": 5326,
+      "tokens": 1443
+    },
+    "Basic model.ipynb": {
+      "cells": 18,
+      "words": 446,
+      "chars": 3308,
+      "tokens": 734
+    },
+    "BioHeat equation solver.ipynb": {
+      "cells": 33,
+      "words": 1244,
+      "chars": 9459,
+      "tokens": 2941
+    },
+    "Bowl source aberrated by a skull slab.ipynb": {
+      "cells": 23,
+      "words": 469,
+      "chars": 4360,
+      "tokens": 1076
+    },
+    "Bowl source.ipynb": {
+      "cells": 17,
+      "words": 339,
+      "chars": 2668,
+      "tokens": 663
+    },
+    "Focusing an array source using phase conjugation.ipynb": {
+      "cells": 43,
+      "words": 838,
+      "chars": 7891,
+      "tokens": 2046
+    },
+    "Global parameters.ipynb": {
+      "cells": 27,
+      "words": 560,
+      "chars": 4560,
+      "tokens": 1115
+    },
+    "In utero sound transmission.ipynb": {
+      "cells": 32,
+      "words": 640,
+      "chars": 6499,
+      "tokens": 1686
+    },
+    "Incident field parallelisation.ipynb": {
+      "cells": 28,
+      "words": 811,
+      "chars": 7298,
+      "tokens": 1718
+    },
+    "Line array simulation with rectangular elements.ipynb": {
+      "cells": 23,
+      "words": 632,
+      "chars": 5761,
+      "tokens": 1536
+    },
+    "Line array simulation.ipynb": {
+      "cells": 22,
+      "words": 624,
+      "chars": 5615,
+      "tokens": 1503
+    },
+    "Material properties.ipynb": {
+      "cells": 30,
+      "words": 468,
+      "chars": 4417,
+      "tokens": 1034
+    },
+    "Multiple domains.ipynb": {
+      "cells": 16,
+      "words": 303,
+      "chars": 2534,
+      "tokens": 667
+    },
+    "Nested domains.ipynb": {
+      "cells": 36,
+      "words": 929,
+      "chars": 6832,
+      "tokens": 1761
+    },
+    "Object shapes.ipynb": {
+      "cells": 25,
+      "words": 393,
+      "chars": 3064,
+      "tokens": 803
+    },
+    "Piston source.ipynb": {
+      "cells": 17,
+      "words": 315,
+      "chars": 2452,
+      "tokens": 616
+    },
+    "Preconditioners.ipynb": {
+      "cells": 21,
+      "words": 563,
+      "chars": 5124,
+      "tokens": 1231
+    },
+    "Time domain simulations.ipynb": {
+      "cells": 65,
+      "words": 2190,
+      "chars": 20844,
+      "tokens": 6122
+    },
+    "Validation - two concentric spheres.ipynb": {
+      "cells": 21,
+      "words": 830,
+      "chars": 7864,
+      "tokens": 2359
+    },
+    "Validation.ipynb": {
+      "cells": 20,
+      "words": 741,
+      "chars": 6805,
+      "tokens": 2135
+    },
+    "Visualisation and postprocess.ipynb": {
+      "cells": 54,
+      "words": 994,
+      "chars": 9015,
+      "tokens": 2457
+    },
+    "Visualisation in 3D.ipynb": {
+      "cells": 25,
+      "words": 538,
+      "chars": 4393,
+      "tokens": 1178
+    }
+  },
+  "chunking": {
+    "256": {
+      "chunks": 198,
+      "mean": 199.1,
+      "median": 223.0,
+      "p90": 258,
+      "max": 283
+    },
+    "512": {
+      "chunks": 103,
+      "mean": 384.4,
+      "median": 452,
+      "p90": 519,
+      "max": 542
+    },
+    "1024": {
+      "chunks": 51,
+      "mean": 778.3,
+      "median": 938,
+      "p90": 1044,
+      "max": 1068
+    }
+  },
+  "extra": {
+    "focused_bowl.py": {
+      "lines": 72,
+      "tokens": 782
+    },
+    "nested_layers.py": {
+      "lines": 56,
+      "tokens": 655
+    },
+    "optimus_starter.py": {
+      "lines": 94,
+      "tokens": 1110
+    }
+  },
+  "totals": {
+    "notebooks": 24,
+    "cells": 668,
+    "tokens": 39745,
+    "words": 16968,
+    "chars": 147582,
+    "tokens_per_word": 2.34,
+    "chars_per_token": 3.71,
+    "cell_tokens_median": 36.0,
+    "cell_tokens_mean": 57.6,
+    "cell_tokens_p90": 126,
+    "cell_tokens_max": 638
+  },
+  "source_code": {
+    "files": 39,
+    "tokens": 107978
+  }
+}

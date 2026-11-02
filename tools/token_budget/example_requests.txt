@@ -1,0 +1,15 @@
+Q|How do I change the frequency of the source in OptimUS?
+Q|What element size should I use for a 500 kHz simulation in water?
+Q|What is the difference between the mass and osrc preconditioners?
+Q|Why does my bowl source focus in the wrong place?
+Q|How do I add a skull layer between the transducer and the brain?
+Q|Which material properties does OptimUS have built in for soft tissue?
+Q|How can I compute the acoustic intensity and power from a piston source?
+Q|Is the bowl location the apex or the centre of the bowl?
+Q|How do I visualise the pressure field on a plane through the focus?
+Q|Can OptimUS do time domain simulations, and how?
+S|Write a script that simulates a 1 MHz focused bowl transducer in water and plots the pressure magnitude in the axial plane.
+S|Write a script for a plane wave hitting a sphere of bone in water at 250 kHz, and save the field on the xz plane.
+S|Write a script that models a 64 element line array focused at 40 mm depth using phase conjugation.
+S|Make a script that puts a 5 mm skull slab in front of a bowl source and compares the focus with and without the slab.
+S|Write a script that runs the BioHeat solver on the pressure field from a piston source and plots the temperature rise.
