@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Reference notebook runs (scripts/run_reference_notebooks.py) and notebook outputs
+reference-run*/
+notebooks/reference/outputs/

@@ -1,0 +1,64 @@
+name: Reference notebooks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      full_mode:
+        description: "Run in full mode instead of CI mode (slower)"
+        type: boolean
+        default: false
+      planted_faults:
+        description: "Also plant known faults and confirm the notebooks catch them (about 3 min)"
+        type: boolean
+        default: false
+
+jobs:
+  static-checks:
+    name: Static checks (no OptimUS needed)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pytest
+      - run: python -m pytest tests/test_reference_notebooks.py -v
+
+  execute:
+    name: Execute in the OptimUS Docker image
+    needs: static-checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pull optimuslib/optimus:latest
+        run: docker pull optimuslib/optimus:latest
+      - name: Run the reference notebooks
+        run: |
+          MODE="--ci"
+          if [ "${{ inputs.full_mode }}" = "true" ]; then MODE=""; fi
+          docker run --rm -v "$GITHUB_WORKSPACE":/work -w /work optimuslib/optimus:latest \
+            python3 -u scripts/run_reference_notebooks.py $MODE --output-dir /work/reference-run
+      - name: Planted-fault test
+        if: ${{ inputs.planted_faults }}
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE":/work -w /work optimuslib/optimus:latest \
+            python3 -u scripts/check_planted_faults.py
+      - name: Write job summary
+        if: always()
+        run: |
+          if [ -f reference-run/summary.md ]; then
+            echo "## Reference notebooks" >> "$GITHUB_STEP_SUMMARY"
+            cat reference-run/summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Upload executed notebooks, figures and validated_notebooks.json
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reference-run
+          path: reference-run/
+          retention-days: 30
