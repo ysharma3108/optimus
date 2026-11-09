@@ -1,0 +1,12 @@
+{"id": "q01", "question": "How do I create a spherical section bowl transducer as the source?", "relevant": ["notebooks/Bowl source.ipynb", "optimus/source/bowl.py"]}
+{"id": "q02", "question": "How do I define a plane wave incident field?", "relevant": ["notebooks/Basic model.ipynb", "optimus/source/planewave.py"]}
+{"id": "q03", "question": "How do I load material properties such as water or cortical bone from the database?", "relevant": ["notebooks/Material properties.ipynb", "optimus/material/acoustics.py", "optimus/material/common.py"]}
+{"id": "q04", "question": "Which preconditioners can I use and how do I switch to OSRC?", "relevant": ["notebooks/Preconditioners.ipynb", "optimus/model/formulations.py", "optimus/model/acoustics.py"]}
+{"id": "q05", "question": "How do I change the GMRES tolerance and maximum number of iterations?", "relevant": ["notebooks/Global parameters.ipynb", "optimus/utils/parameters.py"]}
+{"id": "q06", "question": "How do I simulate a piston source?", "relevant": ["notebooks/Piston source.ipynb", "optimus/source/piston.py"]}
+{"id": "q07", "question": "How do I set up nested domains, one scatterer inside another?", "relevant": ["notebooks/Nested domains.ipynb", "optimus/model/nested.py"]}
+{"id": "q08", "question": "How do I visualise the pressure field on a plane after solving?", "relevant": ["notebooks/Visualisation and postprocess.ipynb", "optimus/postprocess/plot.py", "optimus/postprocess/acoustics.py"]}
+{"id": "q09", "question": "How do I configure an array of transducer elements with given centroid locations?", "relevant": ["notebooks/Array source configuration.ipynb", "notebooks/Array source simulation.ipynb", "optimus/source/array.py"]}
+{"id": "q10", "question": "How accurate is the BEM solution compared to the analytical solution for a sphere?", "relevant": ["notebooks/Validation.ipynb", "notebooks/Validation - two concentric spheres.ipynb"]}
+{"id": "q11", "question": "How do I import a mesh file in gmsh format for a skull?", "relevant": ["notebooks/Bowl source aberrated by a skull slab.ipynb", "optimus/geometry/load.py"]}
+{"id": "q12", "question": "How do I compute the acoustic intensity and power of a source?", "relevant": ["notebooks/Acoustic intensity and power calculations for a piston source.ipynb"]}

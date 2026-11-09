@@ -1,0 +1,31 @@
+name: assistant
+
+on:
+  push:
+    paths: ["assistant/**", "notebooks/**", "optimus/**", ".github/workflows/assistant.yml"]
+  pull_request:
+    paths: ["assistant/**", "notebooks/**", "optimus/**", ".github/workflows/assistant.yml"]
+
+jobs:
+  unit-tests:
+    # No model, no Docker, no API key: every model call in the tests is a fake.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.9", "3.12"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install pytest
+      - name: Unit tests
+        run: python -m pytest assistant
+      - name: Build the knowledge base for this commit
+        run: python -m assistant index
+      - name: Smoke test the command line
+        run: |
+          python -m assistant search "how do I create a bowl source" -k 3
+          python -m assistant route "Write a script for a 500 kHz bowl transducer in water"
