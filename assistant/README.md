@@ -41,7 +41,7 @@ python -m assistant check path\to\script.py
 python -m pytest assistant
 ```
 
-Needs Python 3.9 or newer on the host and nothing else; the solver itself
+Needs Python 3.10 or newer on the host and nothing else; the solver itself
 only runs inside Docker. `ask` additionally needs Ollama
 (`ollama pull qwen3.5:9b`) or `pip install anthropic` and an API key.
 
