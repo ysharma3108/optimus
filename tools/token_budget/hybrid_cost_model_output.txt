@@ -1,0 +1,74 @@
+Token components (current tokenizer)
+  system prompt 775 | 5 pieces 2,594 | question 69.5 | script request 295.6 | answer 468 | script out 1,234
+
+== optimistic ==
+  Q           0.072p  (Claude 0.006p, power 0.066p)  calls 0.14  in     481 out     66  unsolved 0.0%
+  Q_claude    0.043p  (Claude 0.043p, power 0.000p)  calls 1.00  in   3,438 out    468  unsolved 0.0%
+  S1          0.000p  (Claude 0.000p, power 0.000p)  calls 0.00  in       0 out      0  unsolved 0.0%
+  S2          0.429p  (Claude 0.297p, power 0.132p)  calls 0.18  in     954 out    226  unsolved 0.3%
+  S3          2.307p  (Claude 2.307p, power 0.000p)  calls 1.55  in   6,581 out  1,912  unsolved 0.8%
+  Pilot, Claude only (20 Q + 10 S)                 20 Q   10 S  £  0.24
+  Hybrid eval, 15 rounds (60 Q + 30 S)            900 Q  450 S  £  2.86
+  Claude-only baseline, 3 rounds                  180 Q   90 S  £  1.12
+  k sweep: k=3,5,8,10,20 x 60 Q x 3 rounds        900 Q    0 S  £  0.27
+  User study (10 people x 12 Q + 8 S)             120 Q   80 S  £  0.96
+  Ad hoc development                              200 Q  100 S  £  1.24
+  PROJECT TOTAL £6.69
+  Waterfall (same usage, one lever at a time)
+    Claude only, no levers                           £ 18.75
+    + Batch API on evaluation runs                   £ 11.74
+    + prompt caching                                 £ 11.54
+    + return stored code for exact matches           £  8.90
+    + local LLM fills templates (Sonnet on fail)     £  6.17
+    + local LLM answers questions (Haiku fallback)   £  6.69
+
+== central ==
+  Q           0.083p  (Claude 0.017p, power 0.066p)  calls 0.40  in   1,375 out    187  unsolved 0.0%
+  Q_claude    0.043p  (Claude 0.043p, power 0.000p)  calls 1.00  in   3,438 out    468  unsolved 0.0%
+  S1          0.000p  (Claude 0.000p, power 0.000p)  calls 0.00  in       0 out      0  unsolved 0.0%
+  S2          0.842p  (Claude 0.710p, power 0.132p)  calls 0.44  in   2,453 out    543  unsolved 1.6%
+  S3          3.066p  (Claude 3.066p, power 0.000p)  calls 2.10  in   9,895 out  2,591  unsolved 4.0%
+  Pilot, Claude only (20 Q + 10 S)                 20 Q   10 S  £  0.32
+  Hybrid eval, 15 rounds (60 Q + 30 S)            900 Q  450 S  £  4.01
+  Claude-only baseline, 3 rounds                  180 Q   90 S  £  1.57
+  k sweep: k=3,5,8,10,20 x 60 Q x 3 rounds        900 Q    0 S  £  0.27
+  User study (10 people x 12 Q + 8 S)             120 Q   80 S  £  1.35
+  Ad hoc development                              200 Q  100 S  £  1.73
+  PROJECT TOTAL £9.24
+  Waterfall (same usage, one lever at a time)
+    Claude only, no levers                           £ 26.07
+    + Batch API on evaluation runs                   £ 16.35
+    + prompt caching                                 £ 15.69
+    + return stored code for exact matches           £ 12.02
+    + local LLM fills templates (Sonnet on fail)     £  8.64
+    + local LLM answers questions (Haiku fallback)   £  9.24
+
+== pessimistic ==
+  Q           0.092p  (Claude 0.026p, power 0.066p)  calls 0.60  in   2,063 out    281  unsolved 0.0%
+  Q_claude    0.043p  (Claude 0.043p, power 0.000p)  calls 1.00  in   3,438 out    468  unsolved 0.0%
+  S1          0.000p  (Claude 0.000p, power 0.000p)  calls 0.00  in       0 out      0  unsolved 0.0%
+  S2          5.496p  (Claude 5.364p, power 0.132p)  calls 1.57  in  13,117 out  5,079  unsolved 15.2%
+  S3         10.436p  (Claude 10.436p, power 0.000p)  calls 3.20  in  24,562 out 10,344  unsolved 21.2%
+  Pilot, Claude only (20 Q + 10 S)                 20 Q   10 S  £  1.05
+  Hybrid eval, 15 rounds (60 Q + 30 S)            900 Q  450 S  £ 13.77
+  Claude-only baseline, 3 rounds                  180 Q   90 S  £  5.17
+  k sweep: k=3,5,8,10,20 x 60 Q x 3 rounds        900 Q    0 S  £  0.27
+  User study (10 people x 12 Q + 8 S)             120 Q   80 S  £  5.21
+  Ad hoc development                              200 Q  100 S  £  6.56
+  PROJECT TOTAL £32.02
+  Waterfall (same usage, one lever at a time)
+    Claude only, no levers                           £ 84.34
+    + Batch API on evaluation runs                   £ 53.07
+    + prompt caching                                 £ 51.25
+    + return stored code for exact matches           £ 38.94
+    + local LLM fills templates (Sonnet on fail)     £ 31.35
+    + local LLM answers questions (Haiku fallback)   £ 32.02
+
+Sensitivity of the central total (one input at a time)
+  thinking_script             0 -> £  9.24     2000 -> £ 17.34
+  p_first                   0.7 -> £  7.66      0.3 -> £ 10.98
+  p_local_template          0.9 -> £  8.70      0.5 -> £ 10.88
+  p_fix1                    0.6 -> £  8.65      0.3 -> £ 10.58
+  error_text                300 -> £  9.11     2000 -> £  9.88
+  fix_decay                 0.4 -> £  9.24      0.2 -> £  9.42
+  p_question_fallback      0.14 -> £  9.16      0.6 -> £  9.31
