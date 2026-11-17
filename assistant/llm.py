@@ -8,6 +8,7 @@ log with the counts the provider reports.
 from __future__ import annotations
 
 import json
+import re
 import time
 import urllib.request
 from dataclasses import dataclass
@@ -103,9 +104,17 @@ class OllamaClient(Client):
             "model": self.model,
             "messages": [{"role": "system", "content": system}] + messages,
             "stream": False,
+            "think": False,  # no hidden reasoning: it can use up every output token
             "options": {"num_ctx": self.num_ctx, "num_predict": max_tokens},
         })
-        return Reply(text=r["message"]["content"], model=self.model,
+        msg = r.get("message", {})
+        text = re.sub(r"<think>.*?</think>", "", msg.get("content", ""), flags=re.S).strip()
+        if not text:
+            raise RuntimeError(
+                "Ollama returned an empty answer (done_reason=%s, output tokens=%s, "
+                "thinking characters=%d)" % (r.get("done_reason"), r.get("eval_count"),
+                                             len(msg.get("thinking") or "")))
+        return Reply(text=text, model=self.model,
                      input_tokens=r.get("prompt_eval_count", 0), output_tokens=r.get("eval_count", 0))
 
     def embed(self, texts: List[str], model: str = config.MODEL_LOCAL_EMBED) -> List[List[float]]:
