@@ -97,7 +97,7 @@ def cmd_ask(a):
 
     log = TokenLog(LOG)
     retriever = Retriever(_pieces())
-    fallback = _client(a.fallback, log) if a.fallback else None
+    fallback = _client(a.fallback, log) if a.fallback != "none" else None
     weak = retriever.best_lexical_score(a.question) < config.WEAK_MATCH_BM25
     ans = answer(a.question, retriever, _client(a.model, log), fallback, k=a.k, weak_match=weak)
     print(ans.text)
@@ -125,7 +125,7 @@ def main(argv=None):
     p = sub.add_parser("check"); p.add_argument("script"); p.set_defaults(fn=cmd_check)
     p = sub.add_parser("ask"); p.add_argument("question")
     p.add_argument("--model", choices=["local", "haiku", "sonnet"], default="local")
-    p.add_argument("--fallback", choices=["haiku", "sonnet"], default="haiku")
+    p.add_argument("--fallback", choices=["none", "haiku", "sonnet"], default="haiku")
     p.add_argument("-k", type=int, default=config.TOP_K)
     p.set_defaults(fn=cmd_ask)
     sub.add_parser("log").set_defaults(fn=cmd_log)
